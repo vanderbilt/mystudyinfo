@@ -103,7 +103,7 @@ $studyName = $siteNumber = $pageName = "";
         require_once("../redcap_test/redcap_connect.php");
         define("BASE_URL","https://localhost/mystudyinfo/");
         define("MODULE_PROJECT",138);
-        define("AJAX_URL","https://localhost/redcap_test/external_modules/?prefix=study-sites&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
+        define("AJAX_URL","https://localhost/redcap_test/redcap_v13.7.1/ExternalModules/?prefix=study-sites-module&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
     } else {
         // Some environment error has occurred
     }
@@ -128,9 +128,9 @@ $studyName = $siteNumber = $pageName = "";
                         //console.log(this.responseText);
                     }
                   };
-                xhttp.open('GET', '".AJAX_URL."');
+                xhttp.open('GET', '".AJAX_URL."&action=log&pid=".MODULE_PROJECT."&study_name='+study+'&site_number='+site+'&page_name='+page+'&browser='+browserName+'&url='+url);
                 xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                xhttp.send('action=log&pid=".MODULE_PROJECT."&study_name='+study+'&site_number='+site+'&page_name='+page+'&browser='+browserName+'&url='+url);
+                xhttp.send();
                 
                 window.history.replaceState(null,null,url);
             }
@@ -156,9 +156,9 @@ $studyName = $siteNumber = $pageName = "";
                       }
                     }
                   };
-                xhttp.open('GET', '".AJAX_URL."');
+                xhttp.open('GET', '".AJAX_URL."&action=content&pid=".MODULE_PROJECT."&study_name=$studyName&site_number=$siteNumber&page_name=$pageName');
                 xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                xhttp.send('action=content&pid=".MODULE_PROJECT."&study_name=$studyName&site_number=$siteNumber&page_name=$pageName');
+                xhttp.send();
             }
         
               class testBuild {
