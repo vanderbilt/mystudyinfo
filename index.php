@@ -108,13 +108,12 @@ $studyName = $siteNumber = $pageName = "";
     } else {
         // Some environment error has occurred
     }
-echo "Constants are ".BASE_URL.", ".ENVIRONMENT.", ".MODULE_PROJECT.", ".AJAX_URL."<br/>";
+
     if (isset($_GET['study-name']) && isset($_GET['site-number']) && isset($_GET['page-name'])) {
-        $studyName = $_GET['study-name'];
-        $siteNumber = $_GET['site-number'];
-        $pageName = $_GET['page-name'];
+        $studyName = htmlspecialchars($_GET['study-name']);
+        $siteNumber = htmlspecialchars($_GET['site-number']);
+        $pageName = htmlspecialchars($_GET['page-name']);
     }
-echo "Study $studyName and site $siteNumber and page $pageName<br/>";
 
     try {
         $_GET['NOAUTH'] = true;
