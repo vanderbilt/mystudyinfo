@@ -98,7 +98,7 @@ $studyName = $siteNumber = $pageName = "";
     if (ENVIRONMENT == "PROD") {
         define("BASE_URL","https://mystudyinfo.org");
         define("MODULE_PROJECT",148706);
-        define("AJAX_URL","https://redcap.vanderbilt.edu/external_mdoules/?prefix=study-sites&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
+        define("AJAX_URL","https://redcap.vanderbilt.edu/external_modules/?prefix=study-sites&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
     } elseif (ENVIRONMENT == "DEV") {
         require_once("../redcap_test/redcap_connect.php");
         define("BASE_URL","https://localhost/mystudyinfo/");
