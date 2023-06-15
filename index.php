@@ -93,9 +93,7 @@ $defaultPage = "<span class='alignment'>
 
 <?php
 $studyName = $siteNumber = $pageName = "";
-echo "<pre>";
-print_r($_GET);
-echo "</pre>";
+
     define("ENVIRONMENT",(isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == '/app001/www/mystudyinfo' ? "PROD" : 'DEV'));
 
     if (ENVIRONMENT == "PROD") {
@@ -116,7 +114,8 @@ echo "</pre>";
         $siteNumber = db_real_escape_string($_GET['site-number']);
         $pageName = db_real_escape_string($_GET['page-name']);
     }
-
+echo "Study $studyName and site $siteNumber and page $pageName<br/>";
+    echo "Constants are ".BASE_URL.", ".ENVIRONMENT.", ".MODULE_PROJECT.", ".AJAX_URL."<br/>";
     try {
         $_GET['NOAUTH'] = true;
         $_GET['pid'] = MODULE_PROJECT;
