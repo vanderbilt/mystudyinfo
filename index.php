@@ -98,14 +98,15 @@ $studyName = $siteNumber = $pageName = "";
     if (ENVIRONMENT == "PROD") {
         define("BASE_URL","https://mystudyinfo.org");
         define("MODULE_PROJECT",148706);
+        define("AJAX_URL","https://redcap.vanderbilt.edu/external_mdoules/?prefix=study-sites&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
     } elseif (ENVIRONMENT == "DEV") {
         require_once("../redcap_test/redcap_connect.php");
         define("BASE_URL","https://localhost/mystudyinfo/");
         define("MODULE_PROJECT",138);
+        define("AJAX_URL","https://localhost/redcap_test/external_modules/?prefix=study-sites&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
     } else {
         // Some environment error has occurred
     }
-echo "Environment is ".ENVIRONMENT." and project is ".MODULE_PROJECT."<br/>";
 
     if (isset($_GET['study-name']) && isset($_GET['site-number']) && isset($_GET['page-name'])) {
         $studyName = db_real_escape_string($_GET['study-name']);
@@ -117,13 +118,6 @@ echo "Environment is ".ENVIRONMENT." and project is ".MODULE_PROJECT."<br/>";
         $_GET['NOAUTH'] = true;
         $_GET['pid'] = MODULE_PROJECT;
 
-        $module = \ExternalModules\ExternalModules::getModuleInstance("study-sites-module");
-        $module_version = \ExternalModules\ExternalModules::getFrameworkVersion($module);
-        $csrfToken = $module->getCSRFToken();
-        $choices = $module->getChoiceLabels('contact_site');
-
-        $ajaxUrl = $module->getUrl('ajax.php')."&NOAUTH";
-
         echo "<script type='text/javascript'>
             function logPageLoad(study,site,page,url) {
                 var browserName = getBrowserString();
@@ -134,9 +128,9 @@ echo "Environment is ".ENVIRONMENT." and project is ".MODULE_PROJECT."<br/>";
                         //console.log(this.responseText);
                     }
                   };
-                xhttp.open('POST', '$ajaxUrl');
+                xhttp.open('POST', '".AJAX_URL."');
                 xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                xhttp.send('action=log&pid=".MODULE_PROJECT."&study_name='+study+'&site_number='+site+'&page_name='+page+'&browser='+browserName+'&url='+url+'&redcap_csrf_token=$csrfToken');
+                xhttp.send('action=log&pid=".MODULE_PROJECT."&study_name='+study+'&site_number='+site+'&page_name='+page+'&browser='+browserName+'&url='+url);
                 
                 window.history.replaceState(null,null,url);
             }
@@ -162,9 +156,9 @@ echo "Environment is ".ENVIRONMENT." and project is ".MODULE_PROJECT."<br/>";
                       }
                     }
                   };
-                xhttp.open('POST', '$ajaxUrl');
+                xhttp.open('POST', '".AJAX_URL."');
                 xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                xhttp.send('action=content&pid=".MODULE_PROJECT."&study_name=$studyName&site_number=$siteNumber&page_name=$pageName&redcap_csrf_token=$csrfToken');
+                xhttp.send('action=content&pid=".MODULE_PROJECT."&study_name=$studyName&site_number=$siteNumber&page_name=$pageName');
             }
         
               class testBuild {
