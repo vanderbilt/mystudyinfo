@@ -93,7 +93,9 @@ $defaultPage = "<span class='alignment'>
 
 <?php
 $studyName = $siteNumber = $pageName = "";
-
+echo "<pre>";
+print_r($_SERVER);
+echo "</pre>";
     define("ENVIRONMENT",isset($_SERVER['CI_ENV']) ? S_SERVER['CI_ENV'] : 'DEV');
     if (ENVIRONMENT == "production" || ENVIRONMENT == "testing") {
         define("BASE_URL","https://mystudyinfo.org");
