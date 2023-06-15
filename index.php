@@ -116,7 +116,7 @@ $studyName = $siteNumber = $pageName = "";
         }
     }
     define("ENVIRONMENT",isset($_SERVER['CI_ENV']) ? S_SERVER['CI_ENV'] : 'DEV');
-    if (ENVIRONMENT == "PROD" || ENVIRONMENT == "TEST") {
+    if (ENVIRONMENT == "production" || ENVIRONMENT == "testing") {
         define("BASE_URL","https://mystudyinfo.org");
         define("MODULE_PROJECT",148706);
     } elseif (ENVIRONMENT == "DEV") {
