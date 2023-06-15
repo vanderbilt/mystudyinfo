@@ -93,8 +93,11 @@ $defaultPage = "<span class='alignment'>
 
 <?php
 $studyName = $siteNumber = $pageName = "";
-
+echo "<pre>";
+print_r($_SERVER);
+echo "</pre>";
     define("ENVIRONMENT",(isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == '/app001/www/mystudyinfo' ? "PROD" : 'DEV'));
+    echo "Environment is ".ENVIRONMENT."<br/>";
     if (ENVIRONMENT == "PROD") {
         define("BASE_URL","https://mystudyinfo.org");
         define("MODULE_PROJECT",148706);
@@ -140,6 +143,7 @@ $studyName = $siteNumber = $pageName = "";
             
             
             function generateStudyPage(rowSelector) {
+                console.log('Loading study page');
                 const xhttp = new XMLHttpRequest();
                 let pageHTML = ".json_encode($defaultPage).";
                   xhttp.onreadystatechange = function() {
