@@ -1,7 +1,4 @@
 <?php
-error_reporting(E_ALL);
-use Vanderbilt\Victrlib\Env;
-
 echo "<style>";
 require_once ("css/styles.css");
 echo "</style>";
@@ -118,16 +115,18 @@ $studyName = $siteNumber = $pageName = "";
             define("MODULE_PROJECT",138);
         }
     }
-    echo "Environment is ".ENVIRONMENT." and project is ".MODULE_PROJECT."<br/>";
+    define("ENVIRONMENT",isset($_SERVER['CI_ENV']) ? S_SERVER['CI_ENV'] : 'DEV');
     if (ENVIRONMENT == "PROD" || ENVIRONMENT == "TEST") {
-        require_once("/app001/www/redcap/redcap_connect.php");
         define("BASE_URL","https://mystudyinfo.org");
+        define("MODULE_PROJECT",148706);
     } elseif (ENVIRONMENT == "DEV") {
         require_once("../redcap_test/redcap_connect.php");
         define("BASE_URL","https://localhost/mystudyinfo/");
+        define("MODULE_PROJECT",138);
     } else {
         // Some environment error has occurred
     }
+echo "Environment is ".ENVIRONMENT." and project is ".MODULE_PROJECT."<br/>";
 
     if (isset($_GET['study-name']) && isset($_GET['site-number']) && isset($_GET['page-name'])) {
         $studyName = db_real_escape_string($_GET['study-name']);
