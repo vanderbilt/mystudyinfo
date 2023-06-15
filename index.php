@@ -94,27 +94,6 @@ $defaultPage = "<span class='alignment'>
 <?php
 $studyName = $siteNumber = $pageName = "";
 
-    if (!defined("ENVIRONMENT")) {
-        # Define the environment: options include "DEV", "TEST" or "PROD"
-        if (is_file('/app001/www/redcap/plugins/victrlib/src/Env.php'))
-            include_once('/app001/www/redcap/plugins/victrlib/src/Env.php');
-
-        if (class_exists("\\Vanderbilt\\Victrlib\\Env")) {
-            if (Env::isProd()) {
-                define("ENVIRONMENT", "PROD");
-                define("MODULE_PROJECT",148706);
-            } else if (Env::isStaging()) {
-                define("ENVIRONMENT", "TEST");
-                define("MODULE_PROJECT",2354);
-            } else {
-                define("ENVIRONMENT", "DEV");
-                define("MODULE_PROJECT",138);
-            }
-        } else {
-            define("ENVIRONMENT", "DEV");
-            define("MODULE_PROJECT",138);
-        }
-    }
     define("ENVIRONMENT",isset($_SERVER['CI_ENV']) ? S_SERVER['CI_ENV'] : 'DEV');
     if (ENVIRONMENT == "production" || ENVIRONMENT == "testing") {
         define("BASE_URL","https://mystudyinfo.org");
