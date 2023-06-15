@@ -93,11 +93,9 @@ $defaultPage = "<span class='alignment'>
 
 <?php
 $studyName = $siteNumber = $pageName = "";
-echo "<pre>";
-print_r($_SERVER);
-echo "</pre>";
-    define("ENVIRONMENT",(isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'DEV'));
-    if (ENVIRONMENT == "production" || ENVIRONMENT == "testing") {
+
+    define("ENVIRONMENT",(isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == '/app001/www/mystudyinfo' ? "PROD" : 'DEV'));
+    if (ENVIRONMENT == "PROD") {
         define("BASE_URL","https://mystudyinfo.org");
         define("MODULE_PROJECT",148706);
     } elseif (ENVIRONMENT == "DEV") {
