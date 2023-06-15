@@ -1,0 +1,4 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteRule ^([^/.]+)/([^/.]+)/([^/.]+)$ index.php?study-name=$1&site-number=$2&page-name=$3
+</IfModule>

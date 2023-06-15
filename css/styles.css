@@ -1,0 +1,47 @@
+.title_h1, .title_h3 {
+    color: #9c5a94;
+    background-color: inherit;
+    margin:0;
+    padding-top:15px;
+    padding-bottom:15px;
+}
+
+.title_h1 {
+    text-align: center;
+}
+
+.banner {
+    margin:auto;
+    width:100%;
+    background-color: inherit;
+}
+
+body {
+    background-color: #efefef;
+}
+.information {
+    border-radius: 8px;
+    margin: auto;
+    padding: 10px;
+    background-color: inherit;
+}
+.alignment {
+    vertical-align: middle;
+    width: 85%;
+    max-width: 1600px;
+    background: white;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#main_inform_div {
+    padding: 15px;
+    display:block;
+}
+
+img {
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
