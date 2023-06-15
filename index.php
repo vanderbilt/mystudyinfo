@@ -97,7 +97,7 @@ $defaultPage = "<span class='alignment'>
 <?php
 $studyName = $siteNumber = $pageName = "";
 
-    /*if (!defined("ENVIRONMENT")) {
+    if (!defined("ENVIRONMENT")) {
         # Define the environment: options include "DEV", "TEST" or "PROD"
         if (is_file('/app001/www/redcap/plugins/victrlib/src/Env.php'))
             include_once('/app001/www/redcap/plugins/victrlib/src/Env.php');
@@ -117,9 +117,8 @@ $studyName = $siteNumber = $pageName = "";
             define("ENVIRONMENT", "DEV");
             define("MODULE_PROJECT",138);
         }
-    }*/
-define("ENVIRONMENT", "PROD");
-define("MODULE_PROJECT",148706);
+    }
+    echo "Environment is ".ENVIRONMENT." and project is ".MODULE_PROJECT."<br/>";
     if (ENVIRONMENT == "PROD" || ENVIRONMENT == "TEST") {
         require_once("/app001/www/redcap/redcap_connect.php");
         define("BASE_URL","https://mystudyinfo.org");
