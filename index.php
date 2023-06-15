@@ -97,7 +97,7 @@ $studyName = $siteNumber = $pageName = "";
     define("ENVIRONMENT",(isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == '/app001/www/mystudyinfo' ? "PROD" : 'DEV'));
 
     if (ENVIRONMENT == "PROD") {
-        define("BASE_URL","https://mystudyinfo.org/");
+        define("BASE_URL","https://www.mystudyinfo.org/");
         define("MODULE_PROJECT",148706);
         define("AJAX_URL","https://redcap.vanderbilt.edu/external_modules/?prefix=study-sites&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
     } elseif (ENVIRONMENT == "DEV") {
