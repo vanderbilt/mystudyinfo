@@ -169,12 +169,20 @@ $studyName = $siteNumber = $pageName = "";
                   links.click(e => {
                     const link = $(e.target)
                     this.loadPage(link)
-                    logPageLoad('$studyName','$siteNumber',link[0].dataset.pageid,'".BASE_URL.$studyName."/".$siteNumber."/'+link[0].dataset.pageid);
+                    var pageID = link[0].dataset.pageid;
+                    if (link.text() == 'Contacts') {
+                        pageID = 'Contacts'
+                    }
+                    logPageLoad('$studyName','$siteNumber',pageID,'".BASE_URL.$studyName."/".$siteNumber."/'+link[0].dataset.pageid);
                     $('#navbarSupportedContent').removeClass('show')
                   })
         
-                  this.loadPage($(links[".(is_numeric($pageName) && $pageName > 0 ? $pageName - 1 : 0)."]))
-                  logPageLoad('$studyName','$siteNumber','$pageName','".BASE_URL.(is_numeric($studyName) && is_numeric($siteNumber) && is_numeric($pageName) ? $studyName."/".$siteNumber."/".$pageName : "")."');
+                  var pageID = ".(is_numeric($pageName) && $pageName > 0 ? $pageName - 1 : 0).";
+                  this.loadPage($(links[pageID]));
+                  if ($(links[pageID]).text() == 'Contacts') {
+                    pageID = 'Contacts';
+                  }
+                  logPageLoad('$studyName','$siteNumber',pageID,'".BASE_URL.(is_numeric($studyName) && is_numeric($siteNumber) && is_numeric($pageName) ? $studyName."/".$siteNumber."/".$pageName : "")."');
                 }
         
                 getLinks(){
