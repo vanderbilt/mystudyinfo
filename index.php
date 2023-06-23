@@ -146,7 +146,7 @@ $studyName = $siteNumber = $pageName = "";
                   xhttp.onreadystatechange = function() {
                     let row = document.getElementById(rowSelector);
                     if (this.readyState == 4 && this.status == 200) {
-                    console.log(this.responseText);
+                    //console.log(this.responseText);
                       if (this.responseText != '') {
                         row.innerHTML = this.responseText;
                         let loadingLinks = new testBuild;
@@ -179,6 +179,7 @@ $studyName = $siteNumber = $pageName = "";
         
                   var pageID = ".(is_numeric($pageName) && $pageName > 0 ? $pageName - 1 : 0).";
                   this.loadPage($(links[pageID]));
+                  pageID++;
                   if ($(links[pageID]).text() == 'Contacts') {
                     pageID = 'Contacts';
                   }
