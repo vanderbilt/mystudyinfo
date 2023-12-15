@@ -70,6 +70,8 @@ $defaultPage = "<span class='alignment'>
     <!-- Bootstrap CSS -->
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO' crossorigin='anonymous'>
 
+    <link id="favicon" rel="shortcut icon" />
+
     <style>
         #content{
             max-width: 800px;
@@ -103,7 +105,7 @@ $studyName = $siteNumber = $pageName = "";
     } elseif (ENVIRONMENT == "DEV") {
         define("BASE_URL","https://localhost/mystudyinfo/");
         define("MODULE_PROJECT",138);
-        define("AJAX_URL","https://localhost/redcap_test/redcap_v13.7.1/ExternalModules/?prefix=study-sites-module&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
+        define("AJAX_URL","https://localhost/redcap/external_modules/?prefix=study-sites-module&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
     } else {
         // Some environment error has occurred
     }
@@ -147,8 +149,21 @@ $studyName = $siteNumber = $pageName = "";
                     let row = document.getElementById(rowSelector);
                     if (this.readyState == 4 && this.status == 200) {
                     //console.log(this.responseText);
+<<<<<<< HEAD
                       if (this.responseText != '') {
                         row.innerHTML = this.responseText;
+=======
+                    let response = JSON.parse(this.responseText);
+                      if ('html' in response) {
+                        console.log(response);
+                        if ('title' in response) {
+                            document.title = response['title'];
+                        }
+                        row.innerHTML = response['html'];
+                        if ('mime' in response && 'icon' in response) {
+                            $('#favicon').attr('href','data:'+response['mime']+';base64,'+response['icon']);
+                        }
+>>>>>>> 20ad2575c944b68b9c515936b9ebf9dd4565ed21
                         let loadingLinks = new testBuild;
                       }
                       else {
