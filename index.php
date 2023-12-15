@@ -96,31 +96,31 @@ $defaultPage = "<span class='alignment'>
 <?php
 $studyName = $siteNumber = $pageName = "";
 
-    define("ENVIRONMENT",(isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == '/app001/www/mystudyinfo' ? "PROD" : 'DEV'));
+define("ENVIRONMENT",(isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == '/app001/www/mystudyinfo' ? "PROD" : 'DEV'));
 
-    if (ENVIRONMENT == "PROD") {
-        define("BASE_URL","https://www.mystudyinfo.org/");
-        define("MODULE_PROJECT",148706);
-        define("AJAX_URL","https://redcap.vanderbilt.edu/external_modules/?prefix=study-sites&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
-    } elseif (ENVIRONMENT == "DEV") {
-        define("BASE_URL","https://localhost/mystudyinfo/");
-        define("MODULE_PROJECT",138);
-        define("AJAX_URL","https://localhost/redcap/external_modules/?prefix=study-sites-module&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
-    } else {
-        // Some environment error has occurred
-    }
+if (ENVIRONMENT == "PROD") {
+    define("BASE_URL","https://www.mystudyinfo.org/");
+    define("MODULE_PROJECT",148706);
+    define("AJAX_URL","https://redcap.vanderbilt.edu/external_modules/?prefix=study-sites&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
+} elseif (ENVIRONMENT == "DEV") {
+    define("BASE_URL","https://localhost/mystudyinfo/");
+    define("MODULE_PROJECT",138);
+    define("AJAX_URL","https://localhost/redcap/external_modules/?prefix=study-sites-module&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
+} else {
+    // Some environment error has occurred
+}
 
-    if (isset($_GET['study-name']) && isset($_GET['site-number']) && isset($_GET['page-name'])) {
-        $studyName = htmlspecialchars($_GET['study-name']);
-        $siteNumber = htmlspecialchars($_GET['site-number']);
-        $pageName = htmlspecialchars($_GET['page-name']);
-    }
+if (isset($_GET['study-name']) && isset($_GET['site-number']) && isset($_GET['page-name'])) {
+    $studyName = htmlspecialchars($_GET['study-name']);
+    $siteNumber = htmlspecialchars($_GET['site-number']);
+    $pageName = htmlspecialchars($_GET['page-name']);
+}
 
-    try {
-        $_GET['NOAUTH'] = true;
-        $_GET['pid'] = MODULE_PROJECT;
+try {
+    $_GET['NOAUTH'] = true;
+    $_GET['pid'] = MODULE_PROJECT;
 
-        echo "<script type='text/javascript'>
+    echo "<script type='text/javascript'>
             function logPageLoad(study,site,page,url) {
                 var browserName = getBrowserString();
                 console.log('Running log of page load '+page);
@@ -149,10 +149,6 @@ $studyName = $siteNumber = $pageName = "";
                     let row = document.getElementById(rowSelector);
                     if (this.readyState == 4 && this.status == 200) {
                     //console.log(this.responseText);
-<<<<<<< HEAD
-                      if (this.responseText != '') {
-                        row.innerHTML = this.responseText;
-=======
                     let response = JSON.parse(this.responseText);
                       if ('html' in response) {
                         console.log(response);
@@ -163,7 +159,6 @@ $studyName = $siteNumber = $pageName = "";
                         if ('mime' in response && 'icon' in response) {
                             $('#favicon').attr('href','data:'+response['mime']+';base64,'+response['icon']);
                         }
->>>>>>> 20ad2575c944b68b9c515936b9ebf9dd4565ed21
                         let loadingLinks = new testBuild;
                       }
                       else {
@@ -251,14 +246,14 @@ $studyName = $siteNumber = $pageName = "";
         }
         doWork();
         </script>";
-    } catch (Exception $e) {
-        echo "Module doesn't exist you stupid";
-    }
+} catch (Exception $e) {
+    echo "Module doesn't exist you stupid";
+}
 
 ?>
-    <body>
-        <div id="main_inform_div">
+<body>
+<div id="main_inform_div">
 
-        </div>
-    </body>
+</div>
+</body>
 </html>
