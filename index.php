@@ -71,6 +71,7 @@ $defaultPage = "<span class='alignment'>
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO' crossorigin='anonymous'>
 
     <link id="favicon" rel="shortcut icon" />
+    <link id="favicon-apple" rel="apple-touch-icon" />
 
     <style>
         #content{
@@ -158,6 +159,7 @@ try {
                         row.innerHTML = response['html'];
                         if ('mime' in response && 'icon' in response) {
                             $('#favicon').attr('href','data:'+response['mime']+';base64,'+response['icon']);
+                            $('#favicon-apple').attr('href','data:'+response['mime']+';base64,'+response['icon']);
                         }
                         let loadingLinks = new testBuild;
                       }
