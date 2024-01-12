@@ -149,10 +149,10 @@ $studyName = $siteNumber = $pageName = "";
                   xhttp.onreadystatechange = function() {
                     let row = document.getElementById(rowSelector);
                     if (this.readyState == 4 && this.status == 200 && this.responseText != '') {
-                        console.log(this.responseText);
+                        //console.log(this.responseText);
                         let response = JSON.parse(this.responseText);
                           if ('html' in response) {
-                            console.log(response);
+                            //console.log(response);
                             if ('title' in response) {
                                 document.title = response['title'];
                             }
