@@ -148,27 +148,32 @@ $studyName = $siteNumber = $pageName = "";
                 let pageHTML = ".json_encode($defaultPage).";
                   xhttp.onreadystatechange = function() {
                     let row = document.getElementById(rowSelector);
-                    if (this.readyState == 4 && this.status == 200) {
-                    //console.log(this.responseText);
-                    let response = JSON.parse(this.responseText);
-                      if ('html' in response) {
-                        console.log(response);
-                        if ('title' in response) {
-                            document.title = response['title'];
-                        }
-                        row.innerHTML = response['html'];
-                        if ('mime' in response && 'icon' in response) {
-                            $('#favicon').attr('href','data:'+response['mime']+';base64,'+response['icon']);
-                            $('#favicon-apple').attr('href','data:'+response['mime']+';base64,'+response['icon']);
-                        }
-                        let loadingLinks = new testBuild;
-                      }
-                      else {
+                    if (this.readyState == 4 && this.status == 200 && this.responseText != '') {
+                        console.log(this.responseText);
+                        let response = JSON.parse(this.responseText);
+                          if ('html' in response) {
+                            console.log(response);
+                            if ('title' in response) {
+                                document.title = response['title'];
+                            }
+                            row.innerHTML = response['html'];
+                            if ('mime' in response && 'icon' in response) {
+                                $('#favicon').attr('href','data:'+response['mime']+';base64,'+response['icon']);
+                                $('#favicon-apple').attr('href','data:'+response['mime']+';base64,'+response['icon']);
+                            }
+                            let loadingLinks = new testBuild;
+                          }
+                          else {
+                            row.innerHTML = pageHTML;
+                            logPageLoad('','','','".BASE_URL."');
+                          }
+                    }
+                    else {
                         row.innerHTML = pageHTML;
                         logPageLoad('','','','".BASE_URL."');
-                      }
                     }
-                  };
+                  }
+                    
                 xhttp.open('GET', '".AJAX_URL."&action=content&pid=".MODULE_PROJECT."&study_name=$studyName&site_number=$siteNumber&page_name=$pageName');
                 xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                 xhttp.send();
