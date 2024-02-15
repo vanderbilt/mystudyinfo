@@ -150,7 +150,7 @@ try {
                     let row = document.getElementById(rowSelector);
                     if (this.readyState == 4) {
                         if (this.status == 200 && this.responseText != '') {
-                            //console.log(this.responseText);
+                            console.log(this.responseText);
                             let response = JSON.parse(this.responseText);
                               if ('html' in response) {
                                 //console.log(response);
@@ -162,7 +162,9 @@ try {
                                     $('#favicon').attr('href','data:'+response['mime']+';base64,'+response['icon']);
                                     $('#favicon-apple').attr('href','data:'+response['mime']+';base64,'+response['icon']);
                                 }
-                                let loadingLinks = new testBuild;
+                                if ('status' in response && response['status'] != 'error') {
+                                    let loadingLinks = new testBuild;
+                                }
                               }
                               else {
                                 row.innerHTML = pageHTML;
