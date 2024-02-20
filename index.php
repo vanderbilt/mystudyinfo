@@ -150,7 +150,7 @@ try {
                     let row = document.getElementById(rowSelector);
                     if (this.readyState == 4) {
                         if (this.status == 200 && this.responseText != '') {
-                            console.log(this.responseText);
+                            //console.log(this.responseText);
                             let response = JSON.parse(this.responseText);
                               if ('html' in response) {
                                 //console.log(response);
