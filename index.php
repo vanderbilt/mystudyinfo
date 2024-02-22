@@ -162,7 +162,9 @@ try {
                                     $('#favicon').attr('href','data:'+response['mime']+';base64,'+response['icon']);
                                     $('#favicon-apple').attr('href','data:'+response['mime']+';base64,'+response['icon']);
                                 }
-                                let loadingLinks = new testBuild;
+                                if ('status' in response && response['status'] != 'error') {
+                                    let loadingLinks = new testBuild;
+                                }
                               }
                               else {
                                 row.innerHTML = pageHTML;
