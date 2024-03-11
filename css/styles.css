@@ -51,3 +51,8 @@ img {
     height:auto;
     object-fit:contain;
 }
+
+p:empty:before {
+    content: ' ';
+    white-space: pre;
+}
