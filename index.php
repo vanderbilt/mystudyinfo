@@ -122,7 +122,7 @@ try {
     $_GET['pid'] = MODULE_PROJECT;
 
     echo "<script type='text/javascript'>
-            function logPageLoad(study,site,page,url) {
+            function logPageLoad(study,site,page,url,logType) {
                 var browserName = getBrowserString();
                 console.log('Running log of page load '+page);
                 const xhttp = new XMLHttpRequest();
@@ -131,7 +131,7 @@ try {
                         //console.log(this.responseText);
                     }
                   };
-                xhttp.open('GET', '".AJAX_URL."&action=log&pid=".MODULE_PROJECT."&study_name='+study+'&site_number='+site+'&page_name='+page+'&browser='+browserName+'&url='+url);
+                xhttp.open('GET', '".AJAX_URL."&action=log&pid=".MODULE_PROJECT."&study_name='+study+'&site_number='+site+'&page_name='+page+'&browser='+browserName+'&url='+url+'log_type'+logType);
                 xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                 xhttp.send();
                 
@@ -168,12 +168,12 @@ try {
                               }
                               else {
                                 row.innerHTML = pageHTML;
-                                logPageLoad('','','','" . BASE_URL . "');
+                                logPageLoad('','','','" . BASE_URL . "','1');
                               }
                         }
                         else {
                             row.innerHTML = pageHTML;
-                            logPageLoad('','','','" . BASE_URL . "');
+                            logPageLoad('','','','" . BASE_URL . "','1');
                         }
                     }
                   }
@@ -194,7 +194,7 @@ try {
                     if (link.text() == 'Contacts') {
                         pageID = 'Contacts'
                     }
-                    logPageLoad('$studyName','$siteNumber',pageID,'".BASE_URL.$studyName."/".$siteNumber."/'+link[0].dataset.pageid);
+                    logPageLoad('$studyName','$siteNumber',pageID,'".BASE_URL.$studyName."/".$siteNumber."/'+link[0].dataset.pageid,'1');
                     $('#navbarSupportedContent').removeClass('show')
                   })
         
@@ -204,7 +204,7 @@ try {
                   if ($(links[pageID]).text() == 'Contacts') {
                     pageID = 'Contacts';
                   }
-                  logPageLoad('$studyName','$siteNumber',pageID,'".BASE_URL.(is_numeric($studyName) && is_numeric($siteNumber) && is_numeric($pageName) ? $studyName."/".$siteNumber."/".$pageName : "")."');
+                  logPageLoad('$studyName','$siteNumber',pageID,'".BASE_URL.(is_numeric($studyName) && is_numeric($siteNumber) && is_numeric($pageName) ? $studyName."/".$siteNumber."/".$pageName : "")."','1');
                 }
         
                 getLinks(){
