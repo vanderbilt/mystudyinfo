@@ -131,7 +131,7 @@ try {
                         //console.log(this.responseText);
                     }
                   };
-                xhttp.open('GET', '".AJAX_URL."&action=log&pid=".MODULE_PROJECT."&study_name='+study+'&site_number='+site+'&page_name='+page+'&browser='+browserName+'&url='+url+'&log_type'+logType);
+                xhttp.open('GET', '".AJAX_URL."&action=log&pid=".MODULE_PROJECT."&study_name='+study+'&site_number='+site+'&page_name='+page+'&browser='+browserName+'&url='+url+'&log_type='+logType);
                 xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                 xhttp.send();
                 
