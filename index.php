@@ -102,7 +102,7 @@ define("ENVIRONMENT",(isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROO
 if (ENVIRONMENT == "PROD") {
     define("BASE_URL","https://www.mystudyinfo.org/");
     define("MODULE_PROJECT",148706);
-    define("AJAX_URL","https://redcap.vanderbilt.edu/external_modules/?prefix=study-sites&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
+    define("AJAX_URL","https://redcap.vumc.org/external_modules/?prefix=study-sites&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
 } elseif (ENVIRONMENT == "DEV") {
     define("BASE_URL","http://localhost:8012/mystudyinfo/");
     define("MODULE_PROJECT",170);
