@@ -102,11 +102,11 @@ define("ENVIRONMENT",(isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROO
 if (ENVIRONMENT == "PROD") {
     define("BASE_URL","https://www.mystudyinfo.org/");
     define("MODULE_PROJECT",148706);
-    define("AJAX_URL","https://redcap.vanderbilt.edu/external_modules/?prefix=study-sites&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
+    define("AJAX_URL","https://redcap.vumc.org/external_modules/?prefix=study-sites&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
 } elseif (ENVIRONMENT == "DEV") {
-    define("BASE_URL","https://localhost/mystudyinfo/");
+    define("BASE_URL","http://localhost:8012/mystudyinfo/");
     define("MODULE_PROJECT",170);
-    define("AJAX_URL","https://localhost/redcap/external_modules/?prefix=study-sites-module&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
+    define("AJAX_URL","http://localhost:8012/redcap/external_modules/?prefix=study-sites-module&page=ajax&pid=".MODULE_PROJECT."&NOAUTH");
 } else {
     // Some environment error has occurred
 }
@@ -158,9 +158,9 @@ try {
                                     document.title = response['title'];
                                 }
                                 row.innerHTML = response['html'];
-                                if ('mime' in response && 'icon' in response) {
-                                    $('#favicon').attr('href','data:'+response['mime']+';base64,'+response['icon']);
-                                    $('#favicon-apple').attr('href','data:'+response['mime']+';base64,'+response['icon']);
+                                if ('icon' in response) {
+                                    $('#favicon').attr('href',response['icon']);
+                                    $('#favicon-apple').attr('href',response['icon']);
                                 }
                                 if ('status' in response && response['status'] != 'error') {
                                     let loadingLinks = new testBuild;
